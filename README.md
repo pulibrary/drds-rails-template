@@ -1,24 +1,25 @@
-# README
+# DRDS Rails Template
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Database Setup
 
-Things you may want to cover:
+We use Postgres and run it via Lando in development.
 
-* Ruby version
+Lando installation: [[https://github.com/lando/lando/releases]]
 
-* System dependencies
+Startup: `rake servers:start`
 
-* Configuration
+Relevant files:
+ - config/application.rb
+ - config/database.yml
+ - .lando.yml
+ - config/lando_env.rb
+ - db/schema.rb
+ - lib/tasks/servers.rake
 
-* Database creation
+## CircleCI
 
-* Database initialization
+## RSpec
 
-* How to run the test suite
+## SimpleCov (Coverage)
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Rubocop
