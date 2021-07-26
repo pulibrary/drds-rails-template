@@ -1,5 +1,14 @@
 # DRDS Rails Template
 
+## asdf
+
+Most of DRDS uses asdf as a multi-language version manager.
+
+Installation: http://asdf-vm.com/guide/getting-started.html#getting-started
+
+This project includes a sample .tool-verions file with versions that align with
+most of our existing projects.
+
 ## Database Setup
 
 We use Postgres and run it via Lando in development.
