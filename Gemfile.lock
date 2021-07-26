@@ -62,7 +62,14 @@ GEM
       zeitwerk (~> 2.3)
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
+    ast (2.4.2)
     bindex (0.8.1)
+    bixby (3.0.2)
+      rubocop (= 0.85.1)
+      rubocop-ast (~> 0.3.0)
+      rubocop-performance
+      rubocop-rails
+      rubocop-rspec
     bootsnap (1.7.5)
       msgpack (~> 1.0)
     builder (3.2.4)
@@ -102,6 +109,9 @@ GEM
     nio4r (2.5.7)
     nokogiri (1.11.7-x86_64-darwin)
       racc (~> 1.4)
+    parallel (1.20.1)
+    parser (3.0.2.0)
+      ast (~> 2.4.1)
     pg (1.2.3)
     public_suffix (4.0.6)
     puma (5.3.2)
@@ -140,11 +150,33 @@ GEM
       method_source
       rake (>= 0.13)
       thor (~> 1.0)
+    rainbow (3.0.0)
     rake (13.0.6)
     rb-fsevent (0.11.0)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     regexp_parser (2.1.1)
+    rexml (3.2.5)
+    rubocop (0.85.1)
+      parallel (~> 1.10)
+      parser (>= 2.7.0.1)
+      rainbow (>= 2.2.2, < 4.0)
+      regexp_parser (>= 1.7)
+      rexml
+      rubocop-ast (>= 0.0.3)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (>= 1.4.0, < 2.0)
+    rubocop-ast (0.3.0)
+      parser (>= 2.7.1.4)
+    rubocop-performance (1.7.1)
+      rubocop (>= 0.82.0)
+    rubocop-rails (2.6.0)
+      activesupport (>= 4.2.0)
+      rack (>= 1.1)
+      rubocop (>= 0.82.0)
+    rubocop-rspec (1.41.0)
+      rubocop (>= 0.68.1)
+    ruby-progressbar (1.11.0)
     rubyzip (2.3.2)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
@@ -175,6 +207,7 @@ GEM
     turbolinks-source (5.2.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
+    unicode-display_width (1.7.0)
     web-console (4.1.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -198,8 +231,10 @@ GEM
 
 PLATFORMS
   x86_64-darwin-17
+  x86_64-darwin-20
 
 DEPENDENCIES
+  bixby
   bootsnap (>= 1.4.4)
   byebug
   capybara (>= 3.26)
@@ -218,8 +253,5 @@ DEPENDENCIES
   webdrivers
   webpacker (~> 5.0)
 
-RUBY VERSION
-   ruby 2.6.5p114
-
 BUNDLED WITH
-   2.2.16
+   2.2.17
