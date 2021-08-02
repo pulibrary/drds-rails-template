@@ -35,3 +35,10 @@ https://github.com/pulibrary/drds-rails-template/commit/8e96b42f274cab990c6c64bf
 ## SimpleCov (Coverage)
 
 ## Rubocop
+
+We install rubocop via the Samvera project [Bixby](https://github.com/samvera-labs/bixby).
+
+Some additional rules our team uses are:
+- universal double-quotes
+- disable guard clauses cop
+- disable postfix conditionals cop
