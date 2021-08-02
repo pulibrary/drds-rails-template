@@ -6,7 +6,7 @@ Most of DRDS uses asdf as a multi-language version manager.
 
 Installation: http://asdf-vm.com/guide/getting-started.html#getting-started
 
-This project includes a sample .tool-verions file with versions that align with
+This project includes a sample .tool-versions file with versions that align with
 most of our existing projects.
 
 ## Database Setup
@@ -42,3 +42,5 @@ Some additional rules our team uses are:
 - universal double-quotes
 - disable guard clauses cop
 - disable postfix conditionals cop
+
+Commit: https://github.com/pulibrary/drds-rails-template/commit/eca47cfa93f1c6565a7b72279a9fa34c7506d12b
