@@ -31,7 +31,7 @@ group :development, :test do
   gem "bixby"
   gem "pry-byebug"
   gem "pry-rails"
-  gem 'rspec-rails', '~> 5.0.0'
+  gem "rspec-rails", "~> 5.0.0"
 end
 
 group :development do
