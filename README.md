@@ -32,7 +32,8 @@ https://github.com/pulibrary/drds-rails-template/commit/8e96b42f274cab990c6c64bf
 
 ## RSpec
 
-https://github.com/rspec/rspec-rails
+- https://github.com/rspec/rspec-rails
+- https://github.com/teamcapybara/capybara (rails adds this out of the box now)
 
 ## SimpleCov (Coverage)
 
