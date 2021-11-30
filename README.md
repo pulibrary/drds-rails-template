@@ -35,6 +35,11 @@ linters and tests.
 Relevant files:
   - .circleci/config.yml
 
+Once the config file is added to a new project, go to the CircleCI dashboard,
+find the repository, and click "Setup Project".
+
+In the project's GitHub settings, create a branch protection rule for main and
+fill in the settings used on rails_template.
 
 ## RSpec
 
