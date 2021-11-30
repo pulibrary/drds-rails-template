@@ -29,6 +29,12 @@ Commit:
 https://github.com/pulibrary/drds-rails-template/commit/8e96b42f274cab990c6c64bf582e4c85feededcc
 
 ## CircleCI
+We use [CircleCI](https://app.circleci.com/) for continuous integration to run
+linters and tests.
+
+Relevant files:
+  - .circleci/config.yml
+
 
 ## RSpec
 

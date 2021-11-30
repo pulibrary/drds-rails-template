@@ -1,4 +1,27 @@
-version: 2
+version: 2.1
+commands:
+  install_dependencies:
+    steps:
+      - run: gem install bundler -v '2.2.14'
+      - restore_cache:
+          keys:
+            - rails_template-{{ checksum "Gemfile.lock" }}
+      - run: bundle install --path ./vendor/bundle
+      - save_cache:
+          key: rails_template-{{ checksum "Gemfile.lock" }}
+          paths:
+            - ./vendor/bundle
+      - restore_cache:
+          name: Restore Yarn Package Cache
+          key: rails_template-yarn-{{ checksum "yarn.lock" }}
+      - run:
+          name: Install NPM Dependencies via Yarn
+          command: yarn install --frozen-lockfile
+      - save_cache:
+          name: Save Yarn Package Cache
+          key: rails_template-yarn-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
 jobs:
   build:
     working_directory: ~/rails_template
@@ -9,23 +32,7 @@ jobs:
     steps:
       - checkout
       - run: sudo apt update && sudo apt install postgresql-client
-      - restore_cache:
-          keys:
-            - rails_template-{{ checksum "Gemfile.lock" }}-{{ checksum "yarn.lock" }}
-      - run: gem install bundler -v '2.2.14'
-      - run: bundle install --path vendor/bundle
-      - save_cache:
-          key: rails_template-{{ checksum "Gemfile.lock" }}-{{ checksum "yarn.lock" }}
-          paths:
-            - ./vendor/bundle
-      - run:
-          name: Install NPM Dependencies via Yarn
-          command: yarn install
-      - save_cache:
-          name: Save Yarn Package Cache
-          key: rails_template-yarn-{{ checksum "yarn.lock" }}
-          paths:
-            - ~/.cache/yarn
+      - install_dependencies
       - persist_to_workspace:
           root: '~/rails_template'
           paths: '*'
@@ -39,12 +46,7 @@ jobs:
     steps:
       - attach_workspace:
           at: '~/rails_template'
-      - run: gem install bundler -v '2.2.14'
-      - run: bundle install --path vendor/bundle
-      - save_cache:
-          key: rails_template-{{ checksum "Gemfile.lock" }}-{{ checksum "yarn.lock" }}
-          paths:
-            - ./vendor/bundle
+      - install_dependencies
       - run:
           name: Run rubocop
           command: bundle exec rubocop
@@ -63,13 +65,7 @@ jobs:
     steps:
       - attach_workspace:
           at: '~/rails_template'
-
-      - run: gem install bundler -v '2.2.14'
-      - run: bundle install --path vendor/bundle
-      - save_cache:
-          key: rails_template-{{ checksum "Gemfile.lock" }}-{{ checksum "yarn.lock" }}
-          paths:
-            - ./vendor/bundle
+      - install_dependencies
       - run:
           name: Wait for PostgreSQL
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
