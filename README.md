@@ -29,6 +29,17 @@ Commit:
 https://github.com/pulibrary/drds-rails-template/commit/8e96b42f274cab990c6c64bf582e4c85feededcc
 
 ## CircleCI
+We use [CircleCI](https://app.circleci.com/) for continuous integration to run
+linters and tests.
+
+Relevant files:
+  - .circleci/config.yml
+
+Once the config file is added to a new project, go to the CircleCI dashboard,
+find the repository, and click "Setup Project".
+
+In the project's GitHub settings, create a branch protection rule for main and
+fill in the settings used on rails_template.
 
 ## RSpec
 
