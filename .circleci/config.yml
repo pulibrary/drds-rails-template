@@ -3,12 +3,13 @@ commands:
   install_dependencies:
     steps:
       - run: gem install bundler -v '2.2.14'
+      - run: cp Gemfile.lock Gemfile.lock.bak
       - restore_cache:
           keys:
-            - rails_template-{{ checksum "Gemfile.lock" }}
+            - rails_template-{{ checksum "Gemfile.lock.bak" }}
       - run: bundle install --path ./vendor/bundle
       - save_cache:
-          key: rails_template-{{ checksum "Gemfile.lock" }}
+          key: rails_template-{{ checksum "Gemfile.lock.bak" }}
           paths:
             - ./vendor/bundle
       - restore_cache:
