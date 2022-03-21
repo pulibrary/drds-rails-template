@@ -23,6 +23,7 @@ commands:
           key: rails_template-yarn-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn
+
 jobs:
   build:
     working_directory: ~/rails_template
@@ -76,6 +77,8 @@ jobs:
       - run:
           name: Run Rspec
           command: bundle exec rspec
+      - store_artifacts:
+          path: coverage
 
 workflows:
   version: 2

@@ -47,6 +47,7 @@ fill in the settings used on rails_template.
 - https://github.com/teamcapybara/capybara (rails adds this out of the box now)
 
 ## SimpleCov (Coverage)
+https://github.com/simplecov-ruby/simplecov
 
 ## Pry / Byebug
 - https://pry.github.io/
