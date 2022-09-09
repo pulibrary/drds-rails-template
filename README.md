@@ -1,5 +1,11 @@
 # DRDS Rails Template
 
+This project documents tooling used widely in PUL rails applications. It is
+useful when setting up a new project. It is recommended to use as a reference
+rather than a starting point. I.e. read through this README and other files, but
+generate your own new rails app and add/configure tooling there directly.
+Otherwise your new app will likely need immediate maintenance and updates.
+
 ## asdf
 
 Most of DRDS uses asdf as a multi-language version manager.
