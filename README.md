@@ -52,6 +52,13 @@ fill in the settings used on rails_template.
 - https://github.com/rspec/rspec-rails
 - https://github.com/teamcapybara/capybara (rails adds this out of the box now)
 
+## Capistrano
+We use Capistrano for deployment automation.
+- https://github.com/capistrano/capistrano
+
+Make sure your project doesn't already have a "Capfile" or "capfile" present. Then run
+`bundle exec cap install` to "Capify" your project. 
+
 ## SimpleCov (Coverage)
 https://github.com/simplecov-ruby/simplecov
 
