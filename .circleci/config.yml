@@ -73,6 +73,7 @@ jobs:
           POSTGRES_DB: test_db
           POSTGRES_HOST_AUTH_METHOD: trust
     steps:
+      - browser-tools/install-browser-tools
       - attach_workspace:
           at: '~/rails_template'
       - install_dependencies
