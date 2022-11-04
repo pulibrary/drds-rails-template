@@ -56,8 +56,20 @@ fill in the settings used on rails_template.
 We use Capistrano for deployment automation.
 - https://github.com/capistrano/capistrano
 
-Make sure your project doesn't already have a "Capfile" or "capfile" present. Then run
-`bundle exec cap install` to "Capify" your project. 
+Make sure your project doesn't already have a "Capfile" or "capfile" present. Then run `bundle exec cap install` to "Capify" your project.
+
+In the auto-generated `config/deploy.rb` file, add the following line to set the default branch to main.
+```
+set :branch, ENV["BRANCH"] || "main"
+```
+
+Some additional Capistrano-related gems our team uses:
+- `capistrano-passenger`: Restarts the application automatically after deployment
+  - https://github.com/capistrano/passenger
+- `capistrano-rails`: Adds Rails-specific tasks for Capistrano
+  - https://github.com/capistrano/rails
+- `capistrano-rails-console`: Adds a remote Rails console and dbconsole
+  - https://gitlab.com/ydkn/capistrano-rails-console
 
 ## SimpleCov (Coverage)
 https://github.com/simplecov-ruby/simplecov
