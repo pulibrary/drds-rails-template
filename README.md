@@ -52,6 +52,12 @@ fill in the settings used on rails_template.
 - https://github.com/rspec/rspec-rails
 - https://github.com/teamcapybara/capybara (rails adds this out of the box now)
 
+Relevant files:
+  - spec/spec_helper.rb
+
+Review configuration to ensure things like example status persistence (which
+powers the --only-failures flag) are turned on.
+
 ## Capistrano
 We use Capistrano for deployment automation.
 - https://github.com/capistrano/capistrano
