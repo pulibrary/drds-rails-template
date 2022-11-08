@@ -38,3 +38,5 @@ RSpec/DescribeClass:
 
 RSpec/ExampleLength:
   Enabled: false
+  Exclude:
+  - "spec/features/accessibility_spec.rb"
