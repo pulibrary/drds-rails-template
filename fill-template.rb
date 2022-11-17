@@ -24,7 +24,7 @@ def main
     Find.find(parent_dir).each do |path|
         Find.prune if File.basename(path) == ".git"
         next if File.directory? path
-        next if File.basename(path) == __FILE__
+        next if File.basename(path) == File.basename(__FILE__)
         inplace_edit path do |line|
             line = line.gsub("DrdsRailsTemplate", new_name_cap)
             line = line.gsub("drds-rails-template", new_name_dash)
