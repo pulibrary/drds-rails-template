@@ -1,7 +1,10 @@
 # DRDS Rails Template
 
-This project documents tooling used widely in PUL rails applications. It is
-useful when setting up a new project. It is recommended to use as a reference
+This project can be used two different ways:
+- For teams at PUL, it can be used as a template to start new projects.
+- For new developers, it can be taken as an example of best practices.
+
+If you are a new developer, it is recommended to use as a reference
 rather than a starting point. I.e. read through this README and other files, but
 generate your own new rails app and add/configure tooling there directly.
 Otherwise your new app will likely need immediate maintenance and updates.
