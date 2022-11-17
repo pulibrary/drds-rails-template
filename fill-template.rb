@@ -1,20 +1,6 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-# Based on https://stackoverflow.com/a/14249640
-def inplace_edit(file, &block)
-    old_stdout = $stdout
-    argf = ARGF.clone
-
-    argf.argv.replace [file]
-    argf.each_line do |line|
-        yield line
-    end
-    argf.close
-
-    $stdout = old_stdout
-end
-
 def main
     parent_dir = File.expand_path("..", __FILE__)
     Dir.chdir(parent_dir)
@@ -34,15 +20,31 @@ def main
     puts new_name_dash
 
     Dir.glob("**/*").each do |file|
+        next if File.directory? file
         next if File.basename(file) == __FILE__
-        next if file.match(/\.git\//)
+        next if file.match /\.git\//
         inplace_edit file do |line|
-            line = line.gsub("DrdsRailsTemplate", new_name_cap)
-            line = line.gsub("drds-rails-template", new_name_dash)
-            line = line.gsub(/(drds_)?rails_template/, new_name_under)
+            line = line.gsub("FooBar", new_name_cap)
+            line = line.gsub("foo-bar", new_name_dash)
+            line = line.gsub(/(drds_)?foo_bar/, new_name_under)
             print line
         end
     end
+end
+
+# Based on https://stackoverflow.com/a/14249640
+def inplace_edit(file, &block)
+    old_stdout = $stdout
+    argf = ARGF.clone
+
+    argf.argv.replace [file]
+    argf.inplace_mode = ""
+    argf.each_line do |line|
+        yield line
+    end
+    argf.close
+
+    $stdout = old_stdout
 end
 
 main
