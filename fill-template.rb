@@ -24,9 +24,9 @@ def main
         next if File.basename(file) == __FILE__
         next if file.match /\.git\//
         inplace_edit file do |line|
-            line = line.gsub("FooBar", new_name_cap)
-            line = line.gsub("foo-bar", new_name_dash)
-            line = line.gsub(/(drds_)?foo_bar/, new_name_under)
+            line = line.gsub("DrdsRailsTemplate", new_name_cap)
+            line = line.gsub("drds-rails-template", new_name_dash)
+            line = line.gsub(/(drds_)?rails_template/, new_name_under)
             print line
         end
     end
