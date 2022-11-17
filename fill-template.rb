@@ -11,24 +11,22 @@ def main
     exit 1
   end
 
-  new_name_words = new_name.split(/[_-]/)
-  new_name_cap = new_name_words.map { |word| word.capitalize }.join("")
-  new_name_dash = new_name_words.join("-")
-  new_name_under = new_name_words.join("_")
-
-  puts "Finding and replacing with:"
-  puts new_name_cap
-  puts new_name_dash
-  puts new_name_under
-
   # Contents of the README are relevant for template, not for the new repo:
   File.write(File.join(parent_dir, "README.md"), "\# #{new_name}\n\nTODO")
 
   # Walk the directory and re-write files as needed:
+  inplace_edit_dir(parent_dir, new_name)
+end
+
+def inplace_edit_dir(parent_dir, new_name)
+  new_name_words = new_name.split(/[_-]/)
+  new_name_cap = new_name_words.map(&:capitalize).join("")
+  new_name_dash = new_name_words.join("-")
+  new_name_under = new_name_words.join("_")
+
   Find.find(parent_dir).each do |path|
     Find.prune if File.basename(path) == ".git"
-    next if File.directory? path
-    next if File.basename(path) == File.basename(__FILE__)
+    next if File.directory?(path) || File.basename(path) == File.basename(__FILE__)
     inplace_edit path do |line|
       line = line.gsub("DrdsRailsTemplate", new_name_cap)
       line = line.gsub("drds-rails-template", new_name_dash)
