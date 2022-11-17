@@ -21,6 +21,10 @@ def main
     puts new_name_dash
     puts new_name_under
 
+    # Contents of the README are relevant for template, not for the new repo:
+    File.write(File.join(parent_dir, "README.md"), "\# #{new_name}\n\nTODO")
+
+    # Walk the directory and re-write files as needed:
     Find.find(parent_dir).each do |path|
         Find.prune if File.basename(path) == ".git"
         next if File.directory? path
