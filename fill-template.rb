@@ -1,9 +1,10 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
+require 'find'
+
 def main
     parent_dir = File.expand_path("..", __FILE__)
-    Dir.chdir(parent_dir)
     new_name = !ARGV.empty? ? ARGV[0] : File.basename(parent_dir)
     if new_name == "rails-template"
         puts "Rename parent directory, or provide target name as argument"
@@ -18,12 +19,13 @@ def main
     puts "Finding and replacing with:"
     puts new_name_cap
     puts new_name_dash
+    puts new_name_under
 
-    Dir.glob("**/*").each do |file|
-        next if File.directory? file
-        next if File.basename(file) == __FILE__
-        next if file.match /\.git\//
-        inplace_edit file do |line|
+    Find.find(parent_dir).each do |path|
+        Find.prune if File.basename(path) == ".git"
+        next if File.directory? path
+        next if File.basename(path) == __FILE__
+        inplace_edit path do |line|
             line = line.gsub("DrdsRailsTemplate", new_name_cap)
             line = line.gsub("drds-rails-template", new_name_dash)
             line = line.gsub(/(drds_)?rails_template/, new_name_under)
