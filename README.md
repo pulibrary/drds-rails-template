@@ -4,7 +4,10 @@ This project can be used two different ways:
 - For teams at PUL, it can be used as a template to start new projects.
 - For new developers, it can be taken as an example of best practices.
 
-If you are a new developer, it is recommended to use as a reference
+For PUL teams, after [making a new repo from the template](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template)
+run `fill-template.rb` and it will update files to reflect the new repo name.
+
+If you are a new developer, it is recommended to use this as a reference
 rather than a starting point. I.e. read through this README and other files, but
 generate your own new rails app and add/configure tooling there directly.
 Otherwise your new app will likely need immediate maintenance and updates.
