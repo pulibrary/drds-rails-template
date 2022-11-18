@@ -69,7 +69,7 @@ In the auto-generated `config/deploy.rb` file, add the following line to set the
 set :branch, ENV["BRANCH"] || "main"
 ```
 
-The auto-generated `config/deploy.rb` file also includes a write-version task that writes the branch name, commit SHA, and release date of the current deployment to `{yourwebsite}/version.txt`.
+Add the `write-version` task to give your project a public page at `/version.txt` with the branch name, commit SHA, and release date of the current deployment.
 
 Some additional Capistrano-related gems our team uses:
 - `capistrano-passenger`: Restarts the application automatically after deployment
