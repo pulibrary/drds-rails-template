@@ -1,6 +1,6 @@
 # Based on https://stackoverflow.com/a/73999702
-# Removed unnecessary steps, and split large RUN lines up,
-# so if late changes are needed, more layers are chached.
+# Removed unnecessary steps, and split up large RUN lines,
+# so if later changes are needed, more layers are chached.
 FROM debian:bookworm-slim
 
 RUN apt-get update && \
@@ -19,18 +19,22 @@ RUN apt-get install -y \
 RUN apt-get install -y \
         dirmngr gawk 
 
+# Configure git to get rid of detached head warnings
+RUN git config --global advice.detachedHead false
 # Install asdf
-RUN \
-    # configure git to get rid of detached head warnings
-    git config --global advice.detachedHead false; \
-    git clone https://github.com/asdf-vm/asdf.git $HOME/.asdf --branch v0.10.2; \
-    /bin/bash -c 'echo -e "\n\n## Configure ASDF \n. $HOME/.asdf/asdf.sh" >> ~/.bashrc'; \
-    # /bin/bash -c 'echo -e "\n\n## ASDF Bash Completion: \n. $HOME/.asdf/completions/asdf.bash" >> ~/.bashrc'; \
-    exec bash; \
-# install asdf-ruby
-    /bin/bash -c asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git; \
-# install asdf-nodejs
-    /bin/bash -c asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git;
+RUN git clone https://github.com/asdf-vm/asdf.git $HOME/.asdf --branch v0.10.2; \
+    /bin/bash -c 'echo -e "\n\n## Configure ASDF \n. $HOME/.asdf/asdf.sh" >> ~/.bashrc'
+# We need to "exec bash" on every command below to provide the asdf environment:
+RUN exec bash; /bin/bash -c asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git;
+RUN exec bash; /bin/bash -c asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git;
 
+# PUL specific details follow below:
 COPY .tool-versions .
 RUN exec bash; /bin/bash -c asdf install
+RUN exec bash; gem install bundle
+
+# Use "bundle add" to build up the Gemfile, rather than checking it in,
+# so that upgrades for components don't invalidate entire layer.
+RUN exec bash; bundle add rails --version '7.0.4'
+
+RUN exec bash; bundle exec rails new pul-template
