@@ -1,6 +1,8 @@
 #!/usr/bin/env sh
 set -o errexit
-set -o verbose
+# set -o verbose
+
+die() { set +v; echo "$*" 1>&2 ; exit 1; }
 
 TAG=rails-template
 NEW_DIR=template-new
@@ -25,6 +27,12 @@ rm -rf .git \
        tmp/development_secret.txt
 cd ..
 
+# CI was returning non-zero status, even when the diff was empty. Not sure why.
+# So instead we'll just look at the string. "|| true" so the subshell is zero status.
+DIFF=$(diff -r $OLD_DIR $NEW_DIR || true)
+echo $DIFF
+if [ ! -z "$DIFF" ]
+then die "Differences between Docker output and $OLD_DIR"
+fi
 
-diff -r $OLD_DIR $NEW_DIR
 echo "Yay! No difference between Docker output and $OLD_DIR."
