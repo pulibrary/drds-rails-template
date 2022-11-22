@@ -5,19 +5,12 @@ TAG=rails-template
 NEW_DIR=template-new
 OLD_DIR=template-dir
 
-# debugging...
-echo "NEW_DIR? $NEW_DIR"
-echo "docker build supports --output?"
-docker help build
-echo "write privs?"
-mkdir this-is-a-test
-touch this-is-a-test/123.txt
-echo "ls cwd?"
-ls
-echo "ls new dir?"
-ls this-is-a-test
+# The build --output option requires Buildkit.
+# Buildkit is the default on desktop, but needs to be explicitly enabled in CI.
+# See https://docs.docker.com/engine/reference/commandline/build/#custom-build-outputs
+# > This feature requires the BuildKit backend. 
 
-docker build docker-context --tag $TAG --output $NEW_DIR
+DOCKER_BUILDKIT=1 docker build docker-context --tag $TAG --output $NEW_DIR
 echo 'Docker build successful! To connect:'
 echo "  docker run -it $TAG"
 
