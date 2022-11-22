@@ -9,9 +9,19 @@ RUN gem install bundler
 
 RUN mkdir rails-template
 WORKDIR rails-template
+
 RUN bundle init
 RUN bundle add rails
 RUN bundle exec rails new .
+
+RUN bundle add rspec
+# RUN bundle exec rspec init
+
+COPY .rubocop.yml .
+RUN bundle add bixby
+RUN bundle exec rubocop --auto-correct-all --disable-uncorrectable
+
+COPY .circleci . 
 
 RUN ruby --version | ruby -pe 'gsub(/(ruby \d+\.\d+\.\d+).*/, "\\1")' > .tool-versions && \
     node --version | ruby -pe 'gsub("v", "nodejs ")' >> .tool-versions && \

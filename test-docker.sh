@@ -10,4 +10,4 @@ echo 'Docker build successful! To connect:'
 echo "  docker run -it $TAG"
 
 diff -r $OLD_DIR $NEW_DIR
-echo "Yay! No difference between Docker output and $OLD_DIR"
+echo "Yay! No difference between Docker output and $OLD_DIR."
