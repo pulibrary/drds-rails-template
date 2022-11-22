@@ -4,7 +4,7 @@ set -o errexit
 
 die() { set +v; echo "$*" 1>&2 ; exit 1; }
 
-TAG=rails-template
+TAG=rails-template # Needs to match CI cache tag in config.yml.
 NEW_DIR=template-new
 OLD_DIR=template-dir
 

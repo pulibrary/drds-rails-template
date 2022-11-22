@@ -3,7 +3,7 @@
 version: 2
 jobs:
   build:
-    working_directory: /app
+    working_directory: /rails-template
     docker:
       # From https://registry.hub.docker.com/_/docker/tags
       - image: docker:20.10.21-git
@@ -22,22 +22,23 @@ jobs:
           keys:
             - v1-{{ .Branch }}
           paths:
-            - /caches/app.tar
+            - /caches/rails-template.tar
       - run:
           name: Load Docker image layer cache
           command: |
             set +o pipefail
-            docker load -i /caches/app.tar | true
+            docker load -i /caches/rails-template.tar | true
       - run:
           name: Run test
           command: |
             ./test-docker.sh
       - run:
           name: Save Docker image layer cache
+          # Needs to match image tag in test-docker.sh:
           command: |
             mkdir -p /caches
-            docker save -o /caches/app.tar app
+            docker save -o /caches/rails-template.tar rails-template
       - save_cache:
           key: v1-{{ .Branch }}-{{ epoch }}
           paths:
-            - /caches/app.tar
+            - /caches/rails-template.tar
