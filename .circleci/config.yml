@@ -5,7 +5,8 @@ jobs:
   build:
     working_directory: /app
     docker:
-      - image: docker:20.10-ce-git
+      # From https://registry.hub.docker.com/_/docker/tags
+      - image: docker:20.10.21-git
     steps:
       - checkout
       - setup_remote_docker
