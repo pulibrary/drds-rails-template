@@ -22,6 +22,10 @@ git remote add origin https://github.com/pulibrary/my-new-repo.git
 
 ## Maintain and update the template
 
+Many of the dependencies are not pinned in the Dockerfile:
+Upgrades may be released over time, and the template will need to be rebuilt,
+but this shouldn't require much work.
+
 - In a branch, make the necessary changes to `docker-context`.
 - Run `./test-docker.sh` and copy changed files from `template-new` to `template-dir`
 - Rerun `./test-docker.sh` to confirm that docker and template are sync.
