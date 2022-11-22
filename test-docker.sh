@@ -13,7 +13,7 @@ OLD_DIR=template-dir
 # See https://docs.docker.com/engine/reference/commandline/build/#custom-build-outputs
 # "This feature requires the BuildKit backend."
 
-DOCKER_BUILDKIT=1 docker build docker-context --progress tty --tag $TAG --output $NEW_DIR
+DOCKER_BUILDKIT=1 docker build docker-context --progress plain --tag $TAG --output $NEW_DIR
 echo 'Docker build successful! To connect:'
 echo "  docker run -it $TAG"
 
