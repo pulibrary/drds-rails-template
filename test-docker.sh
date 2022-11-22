@@ -31,7 +31,7 @@ cd ..
 # CI was returning non-zero status, even when the diff was empty. Not sure why.
 # So instead we'll just look at the string. "|| true" so the subshell is zero status.
 DIFF=$(diff -r $OLD_DIR $NEW_DIR || true)
-echo $DIFF
+echo "$DIFF"
 if [ ! -z "$DIFF" ]
 then die "Differences between cleaned Docker output and $OLD_DIR"
 fi
