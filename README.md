@@ -88,8 +88,12 @@ https://github.com/simplecov-ruby/simplecov
 
 ## Axe
 We use Axe to automate accessibility testing.
-
 - https://github.com/dequelabs/axe-core-gems/blob/develop/packages/axe-core-rspec
+
+Make sure to `require "axe-rspec"` in `spec/rails_helper.rb`. 
+
+Example accessibility spec:
+- spec/features/accessibility_spec.rb
 
 ## Rubocop
 
