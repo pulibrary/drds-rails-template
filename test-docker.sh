@@ -24,6 +24,7 @@ rm -rf .git \
        config/master.key \
        config/credentials.yml.enc \
        log/development.log \
+       tmp/cache \
        tmp/development_secret.txt
 cd ..
 
