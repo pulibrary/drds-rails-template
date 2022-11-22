@@ -11,7 +11,7 @@ OLD_DIR=template-dir
 # The build --output option requires Buildkit.
 # Buildkit is the default on desktop, but needs to be explicitly enabled in CI.
 # See https://docs.docker.com/engine/reference/commandline/build/#custom-build-outputs
-# > This feature requires the BuildKit backend. 
+# "This feature requires the BuildKit backend."
 
 DOCKER_BUILDKIT=1 docker build docker-context --tag $TAG --output $NEW_DIR
 echo 'Docker build successful! To connect:'
@@ -32,7 +32,7 @@ cd ..
 DIFF=$(diff -r $OLD_DIR $NEW_DIR || true)
 echo $DIFF
 if [ ! -z "$DIFF" ]
-then die "Differences between Docker output and $OLD_DIR"
+then die "Differences between cleaned Docker output and $OLD_DIR"
 fi
 
-echo "Yay! No difference between Docker output and $OLD_DIR."
+echo "Yay! No difference between cleaned Docker output and $OLD_DIR."
