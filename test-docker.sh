@@ -19,6 +19,7 @@ cd $NEW_DIR
 rm -rf .git \
        .ruby-version \
        config/master.key \
+       config/credentials.yml.enc \
        log/development.log \
        tmp/development_secret.txt
 cd -
