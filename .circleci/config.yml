@@ -15,12 +15,12 @@ jobs:
     executor: continuation/default
     steps:
       - checkout
-      # - run: # run a command
-      #     name: Generate config
-      #     command: |
-      #       ./generate-config > generated_config.yml
+      - run:
+          name: Generate config
+          command: |
+            .circleci/generate-config.sh > .circleci/config-generated.yml
       - continuation/continue:
-          configuration_path: .circleci/config-continue.yml
+          configuration_path: .circleci/config-generated.yml
 
 workflows:
   setup:
