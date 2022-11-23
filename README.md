@@ -6,7 +6,15 @@ and a process for maintaining and updating that template with Docker.
 It has CI configuration to confirm that the template matches the output from Docker,
 and to check that a new repo built from the template will pass its own tests.
 
-## Create new repo from template
+## Structure
+
+- `docker-context`: Dockerfile and files that will be copied into the image
+- `template-new`: Git-ignored Docker output from `test-docker.sh`
+- `template-dir`: Compared against `template-new`
+
+## Usage
+
+### Create new repo from template
 
 First, in github, create a new repo, but do not add any files.
 Then copy the contents of `template-dir` and start a new repo.
@@ -20,7 +28,7 @@ git init
 git remote add origin https://github.com/pulibrary/my-new-repo.git
 ```
 
-## Maintain and update the template
+### Maintain and update the template
 
 Many of the dependencies are not pinned in the Dockerfile:
 Upgrades may be released over time, and the template will need to be rebuilt,

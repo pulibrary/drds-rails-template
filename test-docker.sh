@@ -17,7 +17,9 @@ DOCKER_BUILDKIT=1 docker build docker-context --progress plain --tag $TAG --outp
 echo 'Docker build successful! To connect:'
 echo "  docker run -it $TAG"
 
-# Remove files that do not belong in template:
+# Remove files that do not belong in template.
+# TODO: Try again to remove these in the Dockerfile,
+# and document the problem if it doesn't work.
 cd $NEW_DIR
 rm -rf .git \
        .ruby-version \
@@ -33,7 +35,7 @@ cd ..
 DIFF=$(diff -r $OLD_DIR $NEW_DIR || true)
 echo "$DIFF"
 if [ ! -z "$DIFF" ]
-then die "Differences between cleaned Docker output and $OLD_DIR"
+then die "Differences between cleaned Docker output and $OLD_DIR."
 fi
 
 echo "Yay! No difference between cleaned Docker output and $OLD_DIR."

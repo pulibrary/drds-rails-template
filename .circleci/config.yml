@@ -1,17 +1,23 @@
 # Based on https://circleci.com/blog/how-to-build-a-docker-image-on-circleci-2-0/
 # Removed docker image caching for the sake of simplicity.
 
-version: 2
+version: 2.1
+
+# Dynamic config needs to be enabled in the Project Settings for this to take effect
+# https://circleci.com/docs/dynamic-config/
+setup: true
+
+orbs:
+  continuation: circleci/continuation@0.1.2
+
 jobs:
-  build:
-    working_directory: /rails-template
-    docker:
-      # From https://registry.hub.docker.com/_/docker/tags
-      - image: docker:20.10.21-git
+  setup:
+    executor: continuation/default
     steps:
       - checkout
-      - setup_remote_docker
-      - run:
-          name: Run test
-          command: |
-            ./test-docker.sh
+      # - run: # run a command
+      #     name: Generate config
+      #     command: |
+      #       ./generate-config > generated_config.yml
+      - continuation/continue:
+          configuration_path: .circleci/config-continue.yml
