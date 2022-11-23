@@ -18,7 +18,7 @@ jobs:
       - run:
           name: Generate config
           command: |
-            .circleci/generate-config.sh > .circleci/config-generated.yml
+            .circleci/generate-config.rb > .circleci/config-generated.yml
       - continuation/continue:
           configuration_path: .circleci/config-generated.yml
 
