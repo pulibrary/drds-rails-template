@@ -21,3 +21,8 @@ jobs:
       #       ./generate-config > generated_config.yml
       - continuation/continue:
           configuration_path: .circleci/config-continue.yml
+
+workflows:
+  setup:
+    jobs:
+      - setup
