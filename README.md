@@ -86,6 +86,15 @@ https://github.com/simplecov-ruby/simplecov
 - https://pry.github.io/
 - https://github.com/deivid-rodriguez/pry-byebug#commands
 
+## Axe
+We use Axe to automate accessibility testing.
+- https://github.com/dequelabs/axe-core-gems/blob/develop/packages/axe-core-rspec
+
+Make sure to `require "axe-rspec"` in `spec/rails_helper.rb`. 
+
+Example accessibility spec:
+- spec/features/accessibility_spec.rb
+
 ## Rubocop
 
 We install rubocop via the Samvera project [Bixby](https://github.com/samvera-labs/bixby).
