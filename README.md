@@ -6,6 +6,11 @@ rather than a starting point. I.e. read through this README and other files, but
 generate your own new rails app and add/configure tooling there directly.
 Otherwise your new app will likely need immediate maintenance and updates.
 
+## Installation
+
+To generate a new rails-template application via template script:
+`rails new app-name -m https://raw.githubusercontent.com/pulibrary/rails-template/main/template.rb`
+
 ## asdf
 
 Most of DRDS uses asdf as a multi-language version manager.
