@@ -1,42 +1,42 @@
 # frozen_string_literal: true
 
-def add_gems
-  add_gem "bundler", "2.3.18"
-  add_gem "rails", "~> 6.1.3", ">= 6.1.3.2"
-  add_gem "pg"
-  add_gem "puma", "~> 5.0"
-  add_gem "sass-rails", ">= 6"
-  add_gem "webpacker", "~> 5.0"
-  add_gem "turbolinks", "~> 5"
-  add_gem "jbuilder", "~> 2.7"
-  add_gem "bootsnap", ">= 1.4.4", require: false
-  # group :development, :test do
-  add_gem "bixby"
-  add_gem "pry-byebug"
-  add_gem "pry-rails"
-  add_gem "rspec-rails", "~> 5.0.0"
-  # group :development do
-  add_gem "web-console", ">= 4.1.0"
-  add_gem "listen", "~> 3.3"
-  add_gem "rack-mini-profiler", "~> 2.0"
-  add_gem "spring"
-  add_gem "capistrano"
-  add_gem "capistrano-passenger"
-  add_gem "capistrano-rails"
-  add_gem "capistrano-rails-console"
-  # group :test do
-  add_gem "axe-core-rspec"
-  add_gem "capybara", ">= 3.26"
-  add_gem "selenium-webdriver"
-  add_gem "simplecov", require: false
-  add_gem "webdrivers"
-  # other
-  add_gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-  add_gem "matrix"
-  add_gem "net-imap", require: false
-  add_gem "net-pop", require: false
-  add_gem "net-smtp", require: false
-  add_gem "strscan", "3.0.1"
+# Modify the default Gemfile
+def update_gemfile
+
+  # Replace sqlite3 gem with pg
+  gsub_file "Gemfile", 'gem "sqlite3', 'gem "pg"'
+  gsub_file "Gemfile", "# Use sqlite3 as the database for Active Record", "# Use PostgreSQL as the database"
+
+  # Update :development, :test group
+  inject_into_file "Gemfile", "gem \"bixby\"\n", after: "gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]\n"
+  inject_into_file "Gemfile", "gem \"pry-byebug\"\n", after: "gem \"bixby\"\n"
+  inject_into_file "Gemfile", "gem \"pry-rails\"\n", after: "gem \"pry-byebug\"\n"
+  inject_into_file "Gemfile", "gem \"rspec-rails\"\n", after: "gem \"pry-rails\"\n"
+  gsub_file "Gemfile", "# Call 'byebug' anywhere in the code to stop execution and get a debugger console\n",''
+  gsub_file "Gemfile", "gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]\n",''
+  
+  
+
+  # Update :development group
+  # inject_into_file 'Gemfile', '\n# Use Capistrano for deployment', after: 'group :development, :test do'
+  # inject_into_file 'Gemfile', "\ngem \"capistrano\"", after: '# Use Capistrano for deployment'
+  # inject_into_file 'Gemfile', '\ngem "capistrano-passenger"', after: 'gem "capistrano"'
+  # inject_into_file 'Gemfile', '\ngem "capistrano-rails"', after: 'gem "capistrano-passenger"'
+  # inject_into_file 'Gemfile', '\ngem "capistrano-rails-console"', after: 'gem "capistrano-rails"'
+
+  # gem_group :test do
+  #   # Automate accessibility testing
+  #   gem "axe-core-rspec"
+  #   # Use simplecov for coverage analysis
+  #   gem "simplecov", require: false
+  # end
+
+  # # Added for Ruby 3.1 support
+  # gem "matrix"
+  # gem "net-imap", require: false
+  # gem "net-pop", require: false
+  # gem "net-smtp", require: false
+  # gem "strscan", "3.0.1"
 end
 
-add_gems
+update_gemfile
