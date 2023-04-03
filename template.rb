@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 
+def source_paths
+  [__dir__]
+end
+
 # Modify the default Gemfile
 def update_gemfile
   # Replace sqlite3 gem with pg
@@ -11,9 +15,9 @@ def update_gemfile
   inject_into_file "Gemfile", "  gem 'pry-byebug'\n", after: "gem 'bixby'\n"
   inject_into_file "Gemfile", "  gem 'pry-rails'\n", after: "gem 'pry-byebug'\n"
   inject_into_file "Gemfile", "  gem 'rspec-rails', '~> 5.0'\n", after: "gem 'pry-rails'\n"
-  gsub_file "Gemfile", "  # Call 'byebug' anywhere in the code to stop execution and get a debugger console\n",''
-  gsub_file "Gemfile", "  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]\n",''
-  
+  gsub_file "Gemfile", "  # Call 'byebug' anywhere in the code to stop execution and get a debugger console\n", ""
+  gsub_file "Gemfile", "  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]\n", ""
+
   # Update :development group
   inject_into_file "Gemfile", "  # Use Capistrano for deployment\n", after: "gem 'spring'\n"
   inject_into_file "Gemfile", "  gem 'capistrano'\n", after: "# Use Capistrano for deployment\n"
@@ -36,4 +40,15 @@ def update_gemfile
   inject_into_file "Gemfile", "gem 'strscan', '3.0.1'\n", after: "gem 'net-smtp', require: false\n"
 end
 
+# Copy over configuration files
+def copy_config_files
+  copy_file ".browserslistrc", ".browserslistrc"
+  copy_file ".lando.yml", ".lando.yml"
+  copy_file ".rspec", ".rspec"
+  copy_file ".rubocop.yml", ".rubocop.yml"
+  copy_file ".tool-versions", ".tool-versions"
+  copy_file "postcss.config.js", "postcss.config.js"
+end
+
 update_gemfile
+copy_config_files
