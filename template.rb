@@ -2,7 +2,6 @@
 
 # Modify the default Gemfile
 def update_gemfile
-
   # Replace sqlite3 gem with pg
   gsub_file "Gemfile", "gem 'sqlite3', \'~> 1.4\'", "gem 'pg'"
   gsub_file "Gemfile", "# Use sqlite3 as the database for Active Record", "# Use PostgreSQL as the database"
@@ -22,19 +21,19 @@ def update_gemfile
   inject_into_file "Gemfile", "  gem 'capistrano-rails'\n", after: "gem 'capistrano-passenger'\n"
   inject_into_file "Gemfile", "  gem 'capistrano-rails-console'\n", after: "gem 'capistrano-rails'\n"
 
-  # gem_group :test do
-  #   # Automate accessibility testing
-  #   gem "axe-core-rspec"
-  #   # Use simplecov for coverage analysis
-  #   gem "simplecov", require: false
-  # end
+  # Update :test group
+  inject_into_file "Gemfile", "  # Automate accessibility testing\n", after: "group :test do\n"
+  inject_into_file "Gemfile", "  gem 'axe-core-rspec'\n", after: "# Automate accessibility testing\n"
+  inject_into_file "Gemfile", "  # Use simplecov for coverage analysis\n", after: "gem 'selenium-webdriver', '>= 4.0.0.rc1'\n"
+  inject_into_file "Gemfile", "  gem 'simplecov', require: false\n", after: "# Use simplecov for coverage analysis\n"
 
-  # # Added for Ruby 3.1 support
-  # gem "matrix"
-  # gem "net-imap", require: false
-  # gem "net-pop", require: false
-  # gem "net-smtp", require: false
-  # gem "strscan", "3.0.1"
+  # Other gems
+  inject_into_file "Gemfile", "\n# Added for Ruby 3.1 support\n", after: "gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]\n"
+  inject_into_file "Gemfile", "gem 'matrix'\n", after: "# Added for Ruby 3.1 support\n"
+  inject_into_file "Gemfile", "gem 'net-imap', require: false\n", after: "gem 'matrix'\n"
+  inject_into_file "Gemfile", "gem 'net-pop', require: false\n", after: "gem 'net-imap', require: false\n"
+  inject_into_file "Gemfile", "gem 'net-smtp', require: false\n", after: "gem 'net-pop', require: false\n"
+  inject_into_file "Gemfile", "gem 'strscan', '3.0.1'\n", after: "gem 'net-smtp', require: false\n"
 end
 
 update_gemfile
