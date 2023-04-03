@@ -56,6 +56,13 @@ def update_ruby_version
   copy_file ".ruby-version", ".ruby-version"
 end
 
+# Override default README.md
+def update_readme
+  run "rm README.md"
+  copy_file "README.md", "README.md"
+end
+
 update_gemfile
 copy_config_files
 update_ruby_version
+update_readme
