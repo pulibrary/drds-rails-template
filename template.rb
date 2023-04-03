@@ -50,5 +50,12 @@ def copy_config_files
   copy_file "postcss.config.js", "postcss.config.js"
 end
 
+# Override default .ruby-version
+def update_ruby_version
+  run "rm .ruby-version"
+  copy_file ".ruby-version", ".ruby-version"
+end
+
 update_gemfile
 copy_config_files
+update_ruby_version
