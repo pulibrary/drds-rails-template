@@ -105,3 +105,18 @@ Some additional rules our team uses are:
 - disable postfix conditionals cop
 
 Commit: https://github.com/pulibrary/drds-rails-template/commit/eca47cfa93f1c6565a7b72279a9fa34c7506d12b
+
+## GitHub settings
+
+Below are standard GitHub settings used by DLS applications. 
+
+General
+- The wiki can be disabled, as we do not use it for documentation
+- Enable "Allow auto merge"
+- Enable "Automatically delete head branches"
+
+Branch protection rules
+- The ```main``` branch should be protected by:
+    - Requiring a pull request and 1 approval prior to merging branches. Stale PR approvals should be set to be dismissed when new commits are pushed. 
+    - Status check passes from CircleCI for coverage_report, rubocop, and test
+    - Restrict who can push to matching branches to "Organization administrators, repository administrators, and users with the Maintain role."
