@@ -1,4 +1,4 @@
-# DRDS Rails Template
+# DLS Rails Example
 
 This project documents tooling used widely in PUL rails applications. It is
 useful when setting up a new project. It is recommended to use as a reference
@@ -32,7 +32,7 @@ Relevant files:
  - lib/tasks/servers.rake
 
 Commit:
-https://github.com/pulibrary/drds-rails-template/commit/8e96b42f274cab990c6c64bf582e4c85feededcc
+https://github.com/pulibrary/rails-example/commit/8e96b42f274cab990c6c64bf582e4c85feededcc
 
 ## CircleCI
 We use [CircleCI](https://app.circleci.com/) for continuous integration to run
@@ -104,7 +104,7 @@ Some additional rules our team uses are:
 - disable guard clauses cop
 - disable postfix conditionals cop
 
-Commit: https://github.com/pulibrary/drds-rails-template/commit/eca47cfa93f1c6565a7b72279a9fa34c7506d12b
+Commit: https://github.com/pulibrary/rails-example/commit/eca47cfa93f1c6565a7b72279a9fa34c7506d12b
 
 ## GitHub settings
 
