@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  browser-tools: circleci/browser-tools@1.2.5
+  browser-tools: circleci/browser-tools@1.4.6
   node: circleci/node@5.0.2
 
 commands:
@@ -36,10 +36,7 @@ jobs:
         environment:
           RAILS_ENV: test
     steps:
-      - browser-tools/install-browser-tools
-      - run:
-          name: remove errant LICENSE file
-          command: rm LICENSE.chromedriver
+      - browser-tools/install-chrome
       - checkout
       - node/install:
           install-yarn: true
@@ -76,7 +73,7 @@ jobs:
           POSTGRES_DB: test_db
           POSTGRES_HOST_AUTH_METHOD: trust
     steps:
-      - browser-tools/install-browser-tools
+      - browser-tools/install-chrome
       - attach_workspace:
           at: '~/rails_template'
       - install_dependencies
