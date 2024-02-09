@@ -37,9 +37,6 @@ jobs:
           RAILS_ENV: test
     steps:
       - browser-tools/install-browser-tools
-      - run:
-          name: remove errant LICENSE file
-          command: rm LICENSE.chromedriver
       - checkout
       - node/install:
           install-yarn: true
